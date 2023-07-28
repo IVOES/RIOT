@@ -22,27 +22,27 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: setup init_script
-      shell: bash
-      run: |
-        echo "#!/bin/bash
+    #- name: setup init_script
+    #  shell: bash
+    #  run: |
+    #    echo "#!/bin/bash
 
-        # Input args provided by StaticAnalysis action
-        root_dir=\${1}
-        build_dir=\${2}
-        echo \"Hello from the init script! First arg=\${root_dir} second arg=\${build_dir}\"
+    #    # Input args provided by StaticAnalysis action
+    #    root_dir=\${1}
+    #    build_dir=\${2}
+    #    echo \"Hello from the init script! First arg=\${root_dir} second arg=\${build_dir}\"
 
-        add-apt-repository ppa:oibaf/graphics-drivers
-        apt update && apt upgrade
-        apt install -y libvulkan1 mesa-vulkan-drivers vulkan-utils" > init_script.sh
+    #    add-apt-repository ppa:oibaf/graphics-drivers
+    #    apt update && apt upgrade
+    #    apt install -y libvulkan1 mesa-vulkan-drivers vulkan-utils" > init_script.sh
 
     - name: Run static analysis
       uses: JacobDomagala/StaticAnalysis@master
-      #with:
+      with:
       #  # Exclude any issues found in ${Project_root_dir}/lib
       #  exclude_dir: lib
 
-      #  use_cmake: true
+        use_cmake: false
 
       #  # Additional apt packages that need to be installed before running Cmake
       #  apt_pckgs: software-properties-common libglu1-mesa-dev freeglut3-dev mesa-common-dev
